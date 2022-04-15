@@ -1,0 +1,17 @@
+set confirm off
+target extended-remote :4242
+load
+delete breakpoints
+break print_info
+break _exit
+continue
+stepi
+print /u *0x20000188
+continue
+stepi
+print /u *0x20000188
+continue
+stepi
+print /u *0x20000188
+continue
+quit
