@@ -1,0 +1,1 @@
+device pic32mx470f512h
