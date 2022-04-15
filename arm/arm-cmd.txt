@@ -1,0 +1,1 @@
+make PORT_DIR=arm CC=/path-to/arm-none-eabi-gcc LD=/path-to/arm-none-eabi-gcc LFLAGS="-Wl,-gc-sections -specs=nosys.specs -T/path-to/coremark/arm/STM32F407XG.ld" GDB=/path-to/arm-none-eabi-gdb XCLANG="-O2 -ggdb3 -ffunction-sections -march=armv7-m -mcpu=cortex-m4 -mfloat-abi=soft -mthumb" ITERATIONS=10
