@@ -702,8 +702,8 @@ ee_printf(const char *fmt, ...)
       print_info(va_arg(args, int));
     if (strncmp(fmt, "Total ticks      :", 18) == 0)
       print_info(va_arg(args, int));
-    if (strncmp(fmt, "Correct operation", 17) == 0)
-      print_info(1);
+//    if (strncmp(fmt, "Correct operation", 17) == 0)
+//      print_info(1);
 
     ee_vsprintf(buf, fmt, args);
     va_end(args);
