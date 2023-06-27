@@ -1,2 +1,6 @@
 extract_score
 a.out
+*.o
+*/*.o
+coremark.exe
+*.log
