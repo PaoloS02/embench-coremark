@@ -33,7 +33,6 @@ GDB=arm-none-eabi-gdb
 
 # Flag : CFLAGS
 #	Use this flag to define compiler options. Note, you can add compiler options from the command line using XCFLAGS="other flags"
-#PORT_CFLAGS = -O0 -g
 FLAGS_STR = "$(PORT_CFLAGS) $(XCFLAGS) $(XLFLAGS) $(LFLAGS_END)"
 CFLAGS = $(PORT_CFLAGS) -I$(PORT_DIR) -I. -DFLAGS_STR=\"$(FLAGS_STR)\" 
 #Flag : LFLAGS_END
@@ -54,8 +53,6 @@ LFLAGS_END =
 #	You may also need cvt.c if the fcvt functions are not provided as intrinsics by your compiler!
 PORT_SRCS = $(PORT_DIR)/core_portme.c $(PORT_DIR)/ee_printf.c $(PORT_DIR)/startup_stm32f407xx.S
 PORT_OBJS = $(PORT_DIR)/core_portme.o $(PORT_DIR)/ee_printf.o $(PORT_DIR)/startup_stm32f407xx.o
-PORT_CLEAN += $(PORT_DIR)/*.o
-#LINKER_SCRIPT_PATH=$(PORT_DIR)/$(LINKER_SCRIPT)
 vpath %.c $(PORT_DIR)
 vpath %.s $(PORT_DIR)
 
@@ -65,9 +62,7 @@ vpath %.s $(PORT_DIR)
 # Flag : RUN
 #	For a simple port, we assume self hosted compile and run, simple invocation of the executable
 
-#LOAD = $(GDB) -x $(PORT_DIR)/gdb-cmd.txt
 LOAD = echo "Please set LOAD to the process of loading the executable to the flash"
-#RUN = echo "Please set LOAD to the process of running the executable (e.g. via jtag, or board reset)"
 RUN = $(GDB) -x $(PORT_DIR)/gdb-cmd.txt --args
 
 OEXT = .o
