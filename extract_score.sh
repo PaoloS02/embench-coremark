@@ -20,22 +20,23 @@ do
     index=${result_line:1:1}
     value=${result_line:5}
     if [[ $index == "1" ]]; then
-      size=$value
-    fi
-    if [[ $index == "2" ]]; then
       ticks=$value
     fi
-    if [[ $index == "3" ]]; then
+    if [[ $index == "2" ]]; then
       iter=$value
     fi
+    if [[ $index == "3" ]]; then
+      valid=$value
+    fi
   fi
-done < "run2.log"
+done < "run1.log"
 
 size="$(size coremark.exe)"
 
 time_secs=$(echo "scale = 8; $(echo "scale = 8; $ticks/1000000" | bc)/$mhz" | bc | awk '{printf "%lf", $0}')
 iter_secs=$(echo "scale = 8; $iter/$time_secs" | bc | awk '{printf "%lf", $0}')
 cmark_secs=$(echo "scale = 8; $iter_secs/$mhz" | bc | awk '{printf "%lf", $0}')
+cmark_valid=$(echo "scale = 8; $valid" | bc | awk '{printf "%d", $0}')
 
 echo "Total Ticks: $ticks"
 echo "Iterations: $iter"
@@ -47,5 +48,11 @@ echo "CoreMark Size:"
 echo ""
 echo "$size"
 echo ""
+
+if [ ${cmark_valid} == 0 ] ; then
+  echo "Result is valid"
+else
+  echo "ERROR: result is not valid!"
+fi
 
 exit

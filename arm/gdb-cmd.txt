@@ -17,4 +17,8 @@ stepi
 stepi
 print /u *0x20000188
 continue
+stepi
+stepi
+print /u *0x20000188
+continue
 quit
